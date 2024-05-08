@@ -129,10 +129,11 @@ FROM hourly_summary_statistics;
 --- NEW Changes post PROD deployements
 
 -- Add columns / changes in DEV
---ALTER TABLE bronze_sensors ADD COLUMN new_metadata_column STRUCT<ID string, name string>;
---ALTER TABLE silver_sensors ADD COLUMN new_column ARRAY<int>;
-
+/*
+ALTER TABLE bronze_sensors ADD COLUMN new_metadata_column STRUCT<ID string, name string>;
+ALTER TABLE silver_sensors ADD COLUMN new_column ARRAY<int>;
 ALTER TABLE silver_sensors ADD COLUMN my_name STRING;
 ALTER TABLE silver_sensors ADD COLUMN my_dub DOUBLE;
 ALTER TABLE silver_sensors ADD COLUMN my_fl FLOAT;
+*/
 -- Add new column in demo to steps
