@@ -124,68 +124,91 @@
       ))::float AS SmoothedMilesWalked12HourMA --24 hour moving average
 FROM hourly_summary_statistics</databricks:createView>
     </changeSet>
-
-<changeSet author="Cody.Davis (generated)" id="1701304366102-8" runOnChange="true">
-    <createView fullDefinition="false" viewName="gold_sensors_v" replaceIfExists="true">
-      SELECT MAX(`timestamp`)
-      FROM bronze_sensors
-    </createView>
-</changeSet>
-<changeSet author="Cody.Davis (generated)" id="1701292982480-9" runOnChange="true">
-    <preConditions onFail="MARK_RAN">
-    <changeSetExecuted id="1701304366102-8" author="Cody.Davis (generated)" />
-    </preConditions>
-    <createView fullDefinition="false" viewName="gold_sensors_v_nested" replaceIfExists="true">
-    SELECT * FROM gold_sensors_v
-    </createView>
-</changeSet>
-
-<!-- Add a STRUCT column to bronze_sensors -->
-    <changeSet id="add-new_metadata_column-to-bronze_sensors" author="Cody.Davis">
+    <changeSet author="cody.davis (generated)" id="1734989744513-1">
+        <addColumn tableName="silver_sensors">
+            <column name="new_column" type="ARRAY&lt;INT&gt;"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="cody.davis (generated)" id="1734989744513-2">
         <addColumn tableName="bronze_sensors">
-            <column name="new_metadata_column" type="STRUCT&lt;ID STRING, name STRING&gt;" />
+            <column name="new_metadata_column" type="STRUCT&lt;ID: STRING, NAME: STRING&gt;"/>
         </addColumn>
     </changeSet>
-
-    <!-- Add an ARRAY<int> column to silver_sensors -->
-    <changeSet id="add-new_column-to-silver_sensors" author="Cody.Davis">
+    <changeSet author="cody.davis (generated)" id="1734989744513-3">
         <addColumn tableName="silver_sensors">
-            <column name="new_column" type="ARRAY&lt;INT&gt;" />
+            <column name="my_name" type="STRING"/>
         </addColumn>
     </changeSet>
-
-    <!-- Add a STRING column to silver_sensors -->
-    <changeSet id="add-my_name-to-silver_sensors" author="Cody.Davis">
+    <changeSet author="cody.davis (generated)" id="1734989744513-4">
         <addColumn tableName="silver_sensors">
-            <column name="my_name" type="STRING" />
+            <column name="my_dub" type="DOUBLE"/>
         </addColumn>
     </changeSet>
-
-    <!-- Add a DOUBLE column to silver_sensors -->
-    <changeSet id="add-my_dub-to-silver_sensors" author="Cody.Davis">
+    <changeSet author="cody.davis (generated)" id="1734989744513-5">
         <addColumn tableName="silver_sensors">
-            <column name="my_dub" type="DOUBLE" />
+            <column name="my_fl" type="FLOAT"/>
         </addColumn>
     </changeSet>
-
-    <!-- Add a FLOAT column to silver_sensors -->
-    <changeSet id="add-my_fl-to-silver_sensors" author="Cody.Davis">
+    <changeSet author="cody.davis (generated)" id="1734989744513-6">
         <addColumn tableName="silver_sensors">
-            <column name="my_fl" type="FLOAT" />
+            <column name="my_bin" type="BINARY"/>
         </addColumn>
     </changeSet>
-
-    <!-- Add a BINARY column to silver_sensors -->
-    <changeSet id="add-my_bin-to-silver_sensors" author="Cody.Davis">
+    <changeSet author="cody.davis (generated)" id="1734989744513-7">
         <addColumn tableName="silver_sensors">
-            <column name="my_bin" type="BINARY" />
+            <column name="my_tiny" type="TINYINT"/>
         </addColumn>
     </changeSet>
-
-    <!-- Add a TINYINT column to silver_sensors -->
-    <changeSet id="add-my_tiny-to-silver_sensors" author="Cody.Davis">
+    <changeSet author="cody.davis (generated)" id="1734989744513-8">
+        <databricks:createView fullDefinition="false" tblProperties="" viewName="gold_sensors_v">SELECT MAX(`timestamp`)
+      FROM bronze_sensors</databricks:createView>
+    </changeSet>
+    <changeSet author="cody.davis (generated)" id="1734989744513-9">
+        <databricks:createView fullDefinition="false" tblProperties="" viewName="gold_sensors_v_nested">SELECT * FROM gold_sensors_v</databricks:createView>
+    </changeSet>
+    <changeSet author="cody.davis (generated)" id="1734989857850-1">
         <addColumn tableName="silver_sensors">
-            <column name="my_tiny" type="TINYINT" />
+            <column name="new_column" type="ARRAY&lt;INT&gt;"/>
         </addColumn>
+    </changeSet>
+    <changeSet author="cody.davis (generated)" id="1734989857850-2">
+        <addColumn tableName="bronze_sensors">
+            <column name="new_metadata_column" type="STRUCT&lt;ID: STRING, NAME: STRING&gt;"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="cody.davis (generated)" id="1734989857850-3">
+        <addColumn tableName="silver_sensors">
+            <column name="my_name" type="STRING"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="cody.davis (generated)" id="1734989857850-4">
+        <addColumn tableName="silver_sensors">
+            <column name="my_dub" type="DOUBLE"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="cody.davis (generated)" id="1734989857850-5">
+        <addColumn tableName="silver_sensors">
+            <column name="my_fl" type="FLOAT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="cody.davis (generated)" id="1734989857850-6">
+        <addColumn tableName="silver_sensors">
+            <column name="my_bin" type="BINARY"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="cody.davis (generated)" id="1734989857850-7">
+        <addColumn tableName="silver_sensors">
+            <column name="my_tiny" type="TINYINT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="cody.davis (generated)" id="1734989857850-8">
+        <databricks:createView fullDefinition="false" tblProperties="" viewName="gold_sensors_v">SELECT MAX(`timestamp`)
+      FROM bronze_sensors</databricks:createView>
+    </changeSet>
+    <changeSet author="cody.davis (generated)" id="1734989857850-9">
+        <preConditions onFail="MARK_RAN">
+            <changeSetExecuted id="1734989857850-8" author="Cody.Davis (generated)" />
+        </preConditions>
+        <databricks:createView fullDefinition="false" tblProperties="" viewName="gold_sensors_v_nested">SELECT * FROM gold_sensors_v</databricks:createView>
     </changeSet>
 </databaseChangeLog>
